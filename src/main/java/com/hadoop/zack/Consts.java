@@ -16,5 +16,5 @@ public final class Consts {
     public static final String STRIPES_COOCURRENCE_OUTPUT_DIR = "co_stripes_output";
     public static final String STRIPES_COOCURRENCE_COMB_OUTPUT_DIR = "co_stripes_comb_output";
 
-    public static final String EMPTY = "\\s+";
+    public static final String EMPTY = " ";
 }

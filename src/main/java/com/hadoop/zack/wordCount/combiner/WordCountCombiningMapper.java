@@ -16,17 +16,17 @@ public class WordCountCombiningMapper extends Mapper<Object, Text, Text, IntWrit
     private Map<String,Integer> map;
 
     @Override
-    protected void setup(Mapper.Context context) throws IOException, InterruptedException {
+    protected void setup(Context context) throws IOException, InterruptedException {
         map = new HashMap<String, Integer>();
     }
 
     @Override
-    public void map(Object key, Text value, Mapper.Context context) throws IOException, InterruptedException {
+    public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
 
         Map<String,Integer> map = getMap();
         StringTokenizer itr = new StringTokenizer(value.toString());
 
-        String token = null;
+        String token;
         while (itr.hasMoreTokens()) {
             token = itr.nextToken();
             if(map.containsKey(token)){
@@ -38,7 +38,7 @@ public class WordCountCombiningMapper extends Mapper<Object, Text, Text, IntWrit
         }
     }
 
-    private void flush(Mapper.Context context, boolean force) throws IOException, InterruptedException{
+    private void flush(Context context, boolean force) throws IOException, InterruptedException{
 
         Map<String,Integer> map = getMap();
 
@@ -62,7 +62,7 @@ public class WordCountCombiningMapper extends Mapper<Object, Text, Text, IntWrit
     }
 
     @Override
-    protected void cleanup(Mapper.Context context) throws IOException, InterruptedException {
+    protected void cleanup(Context context) throws IOException, InterruptedException {
         flush(context,true);
     }
 

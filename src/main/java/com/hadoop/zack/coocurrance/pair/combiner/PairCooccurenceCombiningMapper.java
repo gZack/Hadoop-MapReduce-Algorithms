@@ -1,6 +1,7 @@
 package com.hadoop.zack.coocurrance.pair.combiner;
 
 import com.hadoop.zack.Consts;
+import com.hadoop.zack.coocurrance.CooccurenceService;
 import com.hadoop.zack.coocurrance.ProductPair;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -16,13 +17,16 @@ public class PairCooccurenceCombiningMapper
 
     private static final int FLUSH_SIZE = 10000;
 
+    private IntWritable ONE = null;
+
+    private ProductPair productPair = null;
+
+    private CooccurenceService service = new CooccurenceService();
+
     @Override
     protected void setup(Context context) throws IOException, InterruptedException {
         map = new HashMap<ProductPair, IntWritable>();
     }
-
-    IntWritable ONE = null;
-    ProductPair productPair = null;
 
     @Override
     public void map(Object key, Text value, Context context)
@@ -34,7 +38,7 @@ public class PairCooccurenceCombiningMapper
             String product;
             for(int i=0; i < products.length-1; i++){
                 product = products[i];
-                List<String> neighbors = getNeighbor(product,i,products);
+                List<String> neighbors = service.getNeighbor(product,i,products);
                 for(String neighbor : neighbors){
                     productPair = new ProductPair(product,neighbor);
                     if(map.containsKey(productPair)){
@@ -78,21 +82,6 @@ public class PairCooccurenceCombiningMapper
 
     public Map<ProductPair, IntWritable> getMap() {
         return map;
-    }
-
-    private List<String> getNeighbor(String productId, int beginIndex, String[] products){
-        List<String> neighbors = new ArrayList<String>();
-        beginIndex++;
-        String product;
-        for(;beginIndex < products.length; beginIndex++){
-            product = products[beginIndex];
-            if(product.equals(productId)){
-                break;
-            }
-            neighbors.add(product);
-        }
-
-        return neighbors;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.hadoop.zack.average.combiner;
 
+import com.hadoop.zack.Consts;
 import com.hadoop.zack.average.AverageComputationPair;
 import org.apache.commons.validator.routines.InetAddressValidator;
 import org.apache.hadoop.io.IntWritable;
@@ -21,7 +22,6 @@ public class AverageComputationCombiningMapper
     private AverageComputationPair pair = null;
     private InetAddressValidator ipValidator = new InetAddressValidator();
 
-    private static final String EMPTY = " ";
     private static final int FLUSH_SIZE = 10000;
 
     @Override
@@ -32,8 +32,8 @@ public class AverageComputationCombiningMapper
     @Override
     public void map(Object key, Text value, Context context)
             throws IOException, InterruptedException {
-        String byteSizeStr = value.toString().substring(value.toString().lastIndexOf(EMPTY)).trim();
-        String ipStr = value.toString().substring(0,value.toString().indexOf(EMPTY));
+        String byteSizeStr = value.toString().substring(value.toString().lastIndexOf(Consts.EMPTY)).trim();
+        String ipStr = value.toString().substring(0,value.toString().indexOf(Consts.EMPTY));
 
         if(ipValidator.isValid(ipStr)){
             Integer byteSize = null;

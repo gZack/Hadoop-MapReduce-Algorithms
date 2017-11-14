@@ -1,6 +1,7 @@
 package com.hadoop.zack.coocurrance.pair;
 
 import com.hadoop.zack.Consts;
+import com.hadoop.zack.coocurrance.CooccurenceService;
 import com.hadoop.zack.coocurrance.ProductPair;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -14,7 +15,10 @@ public class PairCooccurenceMapper
         extends Mapper<Object,Text,ProductPair,IntWritable> {
 
     IntWritable ONE = null;
+
     ProductPair productPair = null;
+
+    private CooccurenceService service = new CooccurenceService();
 
     @Override
     public void map(Object key, Text value, Context context)
@@ -27,7 +31,7 @@ public class PairCooccurenceMapper
             String product;
             for(int i=0; i < products.length-1; i++){
                 product = products[i];
-                List<String> neighbors = getNeighbor(product,i,products);
+                List<String> neighbors = service.getNeighbor(product,i,products);
                 for(String neighbor : neighbors){
                     productPair = new ProductPair(product,neighbor);
                     ONE = new IntWritable(1);
@@ -35,21 +39,6 @@ public class PairCooccurenceMapper
                 }
             }
         }
-    }
-
-    private List<String> getNeighbor(String productId, int beginIndex, String[] products){
-        List<String> neighbors = new ArrayList<String>();
-        beginIndex++;
-        String product;
-        for(;beginIndex < products.length; beginIndex++){
-            product = products[beginIndex];
-            if(product.equals(productId)){
-                break;
-            }
-            neighbors.add(product);
-        }
-
-        return neighbors;
     }
 
 }

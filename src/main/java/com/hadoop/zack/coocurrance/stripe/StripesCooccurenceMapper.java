@@ -1,6 +1,7 @@
 package com.hadoop.zack.coocurrance.stripe;
 
 import com.hadoop.zack.Consts;
+import com.hadoop.zack.coocurrance.CooccurenceService;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
@@ -14,7 +15,10 @@ public class StripesCooccurenceMapper
         extends Mapper<Object,Text,Text,MapWritable> {
 
     private MapWritable occurrenceMap = new MapWritable();
-    IntWritable ONE = null;
+
+    private IntWritable ONE = null;
+
+    private CooccurenceService service = new CooccurenceService();
 
     @Override
     protected void map(Object key, Text value, Context context)
@@ -23,13 +27,13 @@ public class StripesCooccurenceMapper
         String[] products = value.toString().split(Consts.EMPTY);
 
         if(products.length > 1){
-            Text product = null;
+            Text product;
 
             for(int i=0; i < products.length-1; i++){
                 occurrenceMap.clear();
                 product = new Text(products[i]);
 
-                List<String> neighbors = getNeighbor(product.toString(),i,products);
+                List<String> neighbors = service.getNeighbor(product.toString(),i,products);
                 for(String neighbor : neighbors){
                     Text neighborText = new Text(neighbor);
                     if(occurrenceMap.containsKey(neighborText)){
@@ -43,21 +47,5 @@ public class StripesCooccurenceMapper
                 context.write(product, occurrenceMap);
             }
         }
-    }
-
-
-    private List<String> getNeighbor(String productId, int beginIndex, String[] products){
-        List<String> neighbors = new ArrayList<String>();
-        beginIndex++;
-        String product;
-        for(;beginIndex < products.length; beginIndex++){
-            product = products[beginIndex];
-            if(product.equals(productId)){
-                break;
-            }
-            neighbors.add(product);
-        }
-
-        return neighbors;
     }
 }
