@@ -1,4 +1,4 @@
-package com.hadoop.zack.coocurrance;
+package com.hadoop.zack.relativeFrequencies;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
@@ -35,11 +35,24 @@ public class ProductPair implements Writable, WritableComparable<ProductPair> {
             return value;
         }
 
+
         if(this.neighborId.toString().equals("*")){
+
+            if(other.getNeighborId().toString().equals("*")){
+
+                return 0;
+
+            }
 
             return -1;
 
         }else if (other.getNeighborId().toString().equals("*")){
+
+            if(this.neighborId.toString().equals("*")){
+
+                return 0;
+
+            }
 
             return 1;
 
@@ -66,7 +79,7 @@ public class ProductPair implements Writable, WritableComparable<ProductPair> {
 
     @Override
     public String toString() {
-        return "(product=" + getProductId() + ", neighbor=" + getNeighborId() +")";
+        return "(" + getProductId() + ", " + getNeighborId() +")";
     }
 
     @Override

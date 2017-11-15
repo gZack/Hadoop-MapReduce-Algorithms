@@ -13,23 +13,26 @@ public class AverageComputationMapper extends Mapper<Object, Text, Text, Average
 
     private AverageComputationPair pair = null;
 
-    InetAddressValidator ipValidator = new InetAddressValidator();
+    private InetAddressValidator ipValidator = new InetAddressValidator();
 
     public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
 
-        String byteSizeStr = value.toString().substring(value.toString().lastIndexOf(Consts.EMPTY)).trim();
+        String[] logRecords = splitLogRecord(value.toString());
 
-        String ip = value.toString().substring(0,value.toString().indexOf(Consts.EMPTY));
+       //value.toString().substring(value.toString().lastIndexOf(Consts.EMPTY)).trim();
+
+        String ip = logRecords.length > 0 ? logRecords[0] : ""; //value.toString().substring(0,value.toString().indexOf(Consts.EMPTY));
 
         if(ipValidator.isValid(ip)){
 
             ipKey = new Text(ip);
 
-            Integer byteSize = null;
+            int byteSize;
 
             try {
 
-                byteSize = Integer.parseInt(byteSizeStr);
+                byteSize = logRecords.length > 0 ?
+                        Integer.valueOf(logRecords[logRecords.length - 1]) : 0;
 
                 pair = new AverageComputationPair(byteSize,1);
 
@@ -40,6 +43,10 @@ public class AverageComputationMapper extends Mapper<Object, Text, Text, Average
             }
         }
 
+    }
+
+    private String[] splitLogRecord(String logRecord){
+        return logRecord.split(Consts.EMPTY);
     }
 
 }

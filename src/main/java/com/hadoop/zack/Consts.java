@@ -16,5 +16,13 @@ public final class Consts {
     public static final String STRIPES_COOCURRENCE_OUTPUT_DIR = "co_stripes_output";
     public static final String STRIPES_COOCURRENCE_COMB_OUTPUT_DIR = "co_stripes_comb_output";
 
-    public static final String EMPTY = " ";
+    public static final String PAIR_RELATIVE_COOCURRENCE_OUTPUT_DIR = "pair_co_rel_output";
+    public static final String PAIR_RELATIVE_COOCURRENCE_COMB_OUTPUT_DIR = "pair_co_rel_comb_output";
+
+    public static final String STRIPES_RELATIVE_COOCURRENCE_OUTPUT_DIR = "co_stripes_rel_output";
+    public static final String STRIPES_RELATIVE_COOCURRENCE_COMB_OUTPUT_DIR = "co_stripes_comb_rel_output";
+
+    public static final String EMPTY = "\\s+";
+
+    public static final String ASTERIX = "*";
 }

@@ -32,25 +32,38 @@ public class AverageComputationCombiningMapper
     @Override
     public void map(Object key, Text value, Context context)
             throws IOException, InterruptedException {
-        String byteSizeStr = value.toString().substring(value.toString().lastIndexOf(Consts.EMPTY)).trim();
-        String ipStr = value.toString().substring(0,value.toString().indexOf(Consts.EMPTY));
 
-        if(ipValidator.isValid(ipStr)){
-            Integer byteSize = null;
+        String[] logRecords = splitLogRecord(value.toString());
+
+        String ip = logRecords.length > 0 ? logRecords[0] : ""; //value.toString().substring(0,value.toString().indexOf(Consts.EMPTY));
+
+        if(ipValidator.isValid(ip)){
+
+            Integer byteSize;
+
             try {
-                byteSize = Integer.parseInt(byteSizeStr);
-                if(map.containsKey(ipStr)){
-                    AverageComputationPair existingPair = map.get(ipStr);
+
+                byteSize = logRecords.length > 0 ?
+                        Integer.valueOf(logRecords[logRecords.length - 1]) : 0;
+
+                if(map.containsKey(ip)){
+
+                    AverageComputationPair existingPair = map.get(ip);
+
                     existingPair.set(existingPair.getSize().get() + byteSize,
                             existingPair.getCount().get() + 1);
+
                 }else {
+
                     pair = new AverageComputationPair(byteSize,1);
-                    map.put(ipStr,pair);
+
+                    map.put(ip,pair);
+
                 }
-                //context.write(ipKey,pair);
             } catch (NumberFormatException e){
                 //do nothing - skip to the next record
             }
+
             flush(context,false);
         }
     }
@@ -85,4 +98,9 @@ public class AverageComputationCombiningMapper
     public Map<String, AverageComputationPair> getMap() {
         return map;
     }
+
+    private String[] splitLogRecord(String logRecord){
+        return logRecord.split(Consts.EMPTY);
+    }
+
 }

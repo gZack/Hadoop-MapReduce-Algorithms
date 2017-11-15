@@ -16,14 +16,18 @@ public class AverageComputationReducer
             throws IOException, InterruptedException {
 
         int totalCount = 0;
+
         int totalByteSize = 0;
 
         for(AverageComputationPair pair : values){
+
             totalCount += pair.getCount().get();
+
             totalByteSize += pair.getSize().get();
+
         }
 
-        doubleWritable.set(totalByteSize/totalCount);
+        doubleWritable.set((double) totalByteSize/totalCount);
 
         context.write(key, doubleWritable);
     }
