@@ -1,4 +1,4 @@
-package com.hadoop.zack.relativeFrequencies;
+package com.hadoop.zack;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;

@@ -1,8 +1,8 @@
 package com.hadoop.zack.coocurrance.pair.combiner;
 
 import com.hadoop.zack.Consts;
+import com.hadoop.zack.ProductPair;
 import com.hadoop.zack.coocurrance.pair.PairCoocurrenceReducer;
-import com.hadoop.zack.coocurrance.ProductPair;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;

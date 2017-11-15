@@ -1,10 +1,9 @@
 package com.hadoop.zack.relativeFrequencies.stripe.combiner;
 
 import com.hadoop.zack.Consts;
-import com.hadoop.zack.relativeFrequencies.CooccurenceService;
+import com.hadoop.zack.CooccurenceService;
 import com.hadoop.zack.relativeFrequencies.stripe.ViewableMapWritable;
 import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.mapreduce.Mapper;

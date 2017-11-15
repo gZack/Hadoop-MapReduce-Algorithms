@@ -1,4 +1,4 @@
-package com.hadoop.zack.coocurrance;
+package com.hadoop.zack;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,15 +1,13 @@
 package com.hadoop.zack.average.combiner;
 
 import com.hadoop.zack.Consts;
-import com.hadoop.zack.average.AverageComputationPair;
+import com.hadoop.zack.AverageComputationPair;
 import org.apache.commons.validator.routines.InetAddressValidator;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 

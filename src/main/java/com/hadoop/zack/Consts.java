@@ -22,6 +22,9 @@ public final class Consts {
     public static final String STRIPES_RELATIVE_COOCURRENCE_OUTPUT_DIR = "co_stripes_rel_output";
     public static final String STRIPES_RELATIVE_COOCURRENCE_COMB_OUTPUT_DIR = "co_stripes_comb_rel_output";
 
+    public static final String HYBRID_RELATIVE_OUTPUT_DIR = "hybrid_out";
+    public static final String HYBRID_RELATIVE_COMB_OUTPUT_DIR = "hybrid_comb_out";
+
     public static final String EMPTY = "\\s+";
 
     public static final String ASTERIX = "*";

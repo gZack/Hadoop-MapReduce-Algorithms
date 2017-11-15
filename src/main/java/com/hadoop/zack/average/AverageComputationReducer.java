@@ -1,5 +1,6 @@
 package com.hadoop.zack.average;
 
+import com.hadoop.zack.AverageComputationPair;
 import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;

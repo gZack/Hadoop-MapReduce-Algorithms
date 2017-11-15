@@ -1,4 +1,4 @@
-package com.hadoop.zack.coocurrance.stripe;
+package com.hadoop.zack;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.MapWritable;
@@ -18,11 +18,10 @@ public class ViewableMapWritable extends MapWritable {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");
         for(Writable key : keySet()){
-            IntWritable value = (IntWritable) get(key);
             stringBuilder.append("(");
             stringBuilder.append((Text)key);
             stringBuilder.append(",");
-            stringBuilder.append(value.get());
+            stringBuilder.append(get(key));
             stringBuilder.append(")");
         }
         stringBuilder.append("]");

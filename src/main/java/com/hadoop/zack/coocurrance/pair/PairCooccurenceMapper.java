@@ -1,14 +1,13 @@
 package com.hadoop.zack.coocurrance.pair;
 
 import com.hadoop.zack.Consts;
-import com.hadoop.zack.coocurrance.CooccurenceService;
-import com.hadoop.zack.coocurrance.ProductPair;
+import com.hadoop.zack.CooccurenceService;
+import com.hadoop.zack.ProductPair;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class PairCooccurenceMapper

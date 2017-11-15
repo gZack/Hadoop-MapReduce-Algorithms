@@ -1,5 +1,6 @@
 package com.hadoop.zack.average;
 
+import com.hadoop.zack.AverageComputationPair;
 import com.hadoop.zack.Consts;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;

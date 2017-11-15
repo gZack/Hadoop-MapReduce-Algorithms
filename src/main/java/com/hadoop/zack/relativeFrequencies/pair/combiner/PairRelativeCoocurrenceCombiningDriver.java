@@ -1,7 +1,7 @@
 package com.hadoop.zack.relativeFrequencies.pair.combiner;
 
 import com.hadoop.zack.Consts;
-import com.hadoop.zack.relativeFrequencies.ProductPair;
+import com.hadoop.zack.ProductPair;
 import com.hadoop.zack.relativeFrequencies.pair.PairRelativeCoocurrenceReducer;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;

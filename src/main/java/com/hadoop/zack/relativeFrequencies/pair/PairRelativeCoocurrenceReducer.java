@@ -1,11 +1,9 @@
 package com.hadoop.zack.relativeFrequencies.pair;
 
 import com.hadoop.zack.Consts;
-import com.hadoop.zack.relativeFrequencies.ProductPair;
+import com.hadoop.zack.ProductPair;
 import org.apache.hadoop.io.DoubleWritable;
-import org.apache.hadoop.io.FloatWritable;
 import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;

@@ -1,6 +1,6 @@
 package com.hadoop.zack.coocurrance.pair;
 
-import com.hadoop.zack.coocurrance.ProductPair;
+import com.hadoop.zack.ProductPair;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.Reducer;
 

@@ -1,8 +1,8 @@
 package com.hadoop.zack.relativeFrequencies.pair.combiner;
 
 import com.hadoop.zack.Consts;
-import com.hadoop.zack.relativeFrequencies.CooccurenceService;
-import com.hadoop.zack.relativeFrequencies.ProductPair;
+import com.hadoop.zack.CooccurenceService;
+import com.hadoop.zack.ProductPair;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
